@@ -18,18 +18,14 @@ class Factory {
     public:
         Factory(){};
         Base* parse(char** input, int length){
+		for(int i = 0; i < length; i++){
 
-            cout << "Enter calculation: " << endl;
-            string calc;
-            getline(cin, calc);
-
-            while(calc.next() != endl){
-                string op1 = calc.next();
-
-                if(calc.next() = "+"){
-                    string op2 = calc.next();
-                    Base* add = new Add(op1, op2);
-                }
+                    if(input[i] = "+"){
+                        string s = input[i-1];
+                        string j = input[i+1];
+			cout << s << " " << j << endl;
+               	    }
+		}
                 /*
                 else if(input.next() = "-"){
                     string op2 = input.next();
@@ -47,7 +43,7 @@ class Factory {
                     string op2 = input.next();
                     Base* pow = new Power(op1, op2);
                 }*/
-            }
+           
             
         };
 
