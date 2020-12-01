@@ -19,6 +19,7 @@ class Factory{
     private:
         queue<Base*> operands;
         queue<string> operators;
+        queue<Base*> solved;
 
     public:
         Factory(){};
@@ -51,7 +52,11 @@ class Factory{
 
             operate(val1, val2);
 
-            return 0;
+            Base* val3 = solved.front();
+            cout << val3->evaluate() << endl;
+            cout << val3->stringify() << endl;
+            
+            return val3;
         };
 
         bool isOperand(string c){
@@ -74,57 +79,62 @@ class Factory{
                 if(op == "-"){
                     operators.pop();
                     Base* sub = new Sub(val1, val2);
-                    cout << sub->stringify() << "\n";
-                    cout << sub->evaluate() << "\n";
+                    //cout << sub->stringify() << "\n";
+                    //cout << sub->evaluate() << "\n";
                     if(!operands.empty()){
                         val2 = operands.front();
                         operands.pop();
                     }
                     operate(sub, val2);
+                    solved.push(sub);
                 }
                 if(op == "+"){
                     operators.pop();
                     Base* add = new Add(val1, val2);
-                    cout << add->stringify() << "\n";
-                    cout << add->evaluate() << "\n";
+                    //cout << add->stringify() << "\n";
+                    //cout << add->evaluate() << "\n";
                     if(!operands.empty()){
                         val2 = operands.front();
                         operands.pop();
                     }
                     operate(add, val2);
+                    solved.push(add);
                 }
                 if(op == "/"){
                     operators.pop();
                     Base* div = new Div(val1, val2);
-                    cout << div->stringify() << "\n";
-                    cout << div->evaluate() << "\n";
+                    //cout << div->stringify() << "\n";
+                    //cout << div->evaluate() << "\n";
                     if(!operands.empty()){
                         val2 = operands.front();
                         operands.pop();
                     }
                     operate(div, val2);
+                    solved.push(div);
                 }
                 if(op == "*"){
                     operators.pop();
                     Base* mult = new Mult(val1, val2);
-                    cout << mult->stringify() << "\n";
-                    cout << mult->evaluate() << "\n";
+                    //cout << mult->stringify() << "\n";
+                    //cout << mult->evaluate() << "\n";
                     if(!operands.empty()){
                         val2 = operands.front();
                         operands.pop();
                     }
                     operate(mult, val2);
+                    solved.push(mult);
                 }
                 if(op == "**"){
                     operators.pop();
                     Base* pow = new Power(val1, val2);
-                    cout << pow->stringify() << "\n";
-                    cout << pow->evaluate() << "\n";
+                    //cout << pow->stringify() << "\n";
+                    //cout << pow->evaluate() << "\n";
                     if(!operands.empty()){
                         val2 = operands.front();
                         operands.pop();
                     }
                     operate(pow, val2);
+                    solved.push(pow);
                 }
             }
         };
