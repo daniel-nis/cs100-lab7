@@ -26,6 +26,7 @@ class Factory{
             double val = 0;
             char* c;
             string s;
+            Base* h;
 
             for(int i = 1; i < length; i++){
                 c = input[i];
@@ -49,6 +50,8 @@ class Factory{
             operands.pop();
 
             operate(val1, val2);
+
+            return 0;
         };
 
         bool isOperand(string c){
@@ -59,7 +62,7 @@ class Factory{
         };
 
         bool isOperator(string c){
-            if (!c.compare("+") || !c.compare("-")){
+            if (!c.compare("+") || !c.compare("-") || !c.compare("*") || !c.compare("/") || !c.compare("**")){
                 return true;
             }
             return false;
@@ -89,6 +92,39 @@ class Factory{
                         operands.pop();
                     }
                     operate(add, val2);
+                }
+                if(op == "/"){
+                    operators.pop();
+                    Base* div = new Div(val1, val2);
+                    cout << div->stringify() << "\n";
+                    cout << div->evaluate() << "\n";
+                    if(!operands.empty()){
+                        val2 = operands.front();
+                        operands.pop();
+                    }
+                    operate(div, val2);
+                }
+                if(op == "*"){
+                    operators.pop();
+                    Base* mult = new Mult(val1, val2);
+                    cout << mult->stringify() << "\n";
+                    cout << mult->evaluate() << "\n";
+                    if(!operands.empty()){
+                        val2 = operands.front();
+                        operands.pop();
+                    }
+                    operate(mult, val2);
+                }
+                if(op == "**"){
+                    operators.pop();
+                    Base* pow = new Power(val1, val2);
+                    cout << pow->stringify() << "\n";
+                    cout << pow->evaluate() << "\n";
+                    if(!operands.empty()){
+                        val2 = operands.front();
+                        operands.pop();
+                    }
+                    operate(pow, val2);
                 }
             }
         };
