@@ -53,9 +53,9 @@ class Factory{
             operate(val1, val2);
 
             Base* val3 = solved.front();
-            cout << val3->evaluate() << endl;
-            cout << val3->stringify() << endl;
-            
+            //cout << val3->evaluate() << endl;
+            //cout << val3->stringify() << endl;
+
             return val3;
         };
 
