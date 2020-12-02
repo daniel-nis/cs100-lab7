@@ -22,14 +22,14 @@ TEST(FactoryAdd, Add_1) {
 }
 
 TEST(FactoryAdd, Add_2) {
-    char *test_val[4] = {" ", "6", "+", "6"};
+    char *test_val[4] = {" ", "16", "+", "26"};
     Factory* factory = new Factory();
 
     Base* conversion = factory->parse( test_val,4);
 
     ASSERT_NE(conversion, nullptr);
-    EXPECT_EQ(conversion->stringify(), "6.000000+6.000000");
-    EXPECT_EQ(conversion->evaluate(), 12.000000);
+    EXPECT_EQ(conversion->stringify(), "16.000000+26.000000");
+    EXPECT_EQ(conversion->evaluate(), 42.000000);
 
 }
 
@@ -58,13 +58,13 @@ TEST(FactorySub, Sub_1) {
 }
 
 TEST(FactorySub, Sub_2) {
-    char *test_val[4] = {" ", "9", "-", "4"};
+    char *test_val[4] = {" ", "30", "-", "25"};
     Factory* factory = new Factory();
 
     Base* conversion = factory->parse( test_val,4);
 
     ASSERT_NE(conversion, nullptr);
-    EXPECT_EQ(conversion->stringify(), "9.000000-4.000000");
+    EXPECT_EQ(conversion->stringify(), "30.000000-25.000000");
     EXPECT_EQ(conversion->evaluate(), 5.000000);
 
 }
@@ -94,14 +94,14 @@ TEST(FactoryMult, Mult_1) {
 }
 
 TEST(FactoryMult, Mult_2) {
-    char *test_val[4] = {" ", "9", "*", "9"};
+    char *test_val[4] = {" ", "11", "*", "11"};
     Factory* factory = new Factory();
 
     Base* conversion = factory->parse( test_val,4);
 
     ASSERT_NE(conversion, nullptr);
-    EXPECT_EQ(conversion->stringify(), "9.000000*9.000000");
-    EXPECT_EQ(conversion->evaluate(), 81.000000);
+    EXPECT_EQ(conversion->stringify(), "11.000000*11.000000");
+    EXPECT_EQ(conversion->evaluate(), 121.000000);
 
 }
 
@@ -130,26 +130,26 @@ TEST(FactoryDiv, Div_1) {
 }
 
 TEST(FactoryDiv, Div_2) {
-    char *test_val[4] = {" ", "9", "/", "3"};
+    char *test_val[4] = {" ", "30", "/", "10"};
     Factory* factory = new Factory();
 
     Base* conversion = factory->parse( test_val,4);
 
     ASSERT_NE(conversion, nullptr);
-    EXPECT_EQ(conversion->stringify(), "9.000000/3.000000");
+    EXPECT_EQ(conversion->stringify(), "30.000000/10.000000");
     EXPECT_EQ(conversion->evaluate(), 3.000000);
 
 }
 
-TEST(FactoryDiv, Div_3) {
-    char *test_val[4] = {" ", "5", "/", "5"};
+TEST(FactoryDiv, Div_Zero) {
+    char *test_val[4] = {" ", "0", "/", "5"};
     Factory* factory = new Factory();
 
     Base* conversion = factory->parse( test_val,4);
 
     ASSERT_NE(conversion, nullptr);
-    EXPECT_EQ(conversion->stringify(), "5.000000/5.000000");
-    EXPECT_EQ(conversion->evaluate(), 1.000000);
+    EXPECT_EQ(conversion->stringify(), "0.000000/5.000000");
+    EXPECT_EQ(conversion->evaluate(), 0.000000);
 
 }
 
@@ -166,14 +166,14 @@ TEST(FactoryPow, Pow_1) {
 }
 
 TEST(FactoryPow, Pow_2) {
-    char *test_val[4] = {" ", "9", "**", "3"};
+    char *test_val[4] = {" ", "25", "**", "3"};
     Factory* factory = new Factory();
 
     Base* conversion = factory->parse( test_val,4);
 
     ASSERT_NE(conversion, nullptr);
-    EXPECT_EQ(conversion->stringify(), "9.000000**3.000000");
-    EXPECT_EQ(conversion->evaluate(), 729.000000);
+    EXPECT_EQ(conversion->stringify(), "25.000000**3.000000");
+    EXPECT_EQ(conversion->evaluate(), 15625.000000);
 
 }
 
@@ -213,7 +213,7 @@ TEST(FactoryTest_Complex, Test_2) {
 
 }
 
-TEST(FactoryTest_Complex, Test_3) {
+TEST(FactoryTest_Complex, Test_Zero) {
     char *test_val[12] = {" ", "9", "-", "4", "**", "3", "/", "5", "+", "5", "*", "6"};
     Factory* factory = new Factory();
 
@@ -248,4 +248,5 @@ TEST(FactoryTest_Complex, Test_Negative) {
     EXPECT_EQ(conversion->evaluate(), -3190.000000);
 
 }
+
 #endif
