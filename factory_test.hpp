@@ -205,7 +205,7 @@ TEST(Factory, Null_2) {
 
     Base* conversion = factory->parse( test_val,2);
     EXPECT_TRUE(conversion == nullptr);
-    //EXPECT_EQ(conversion, nullptr);
+    EXPECT_EQ(conversion, nullptr);
 
 }
 
