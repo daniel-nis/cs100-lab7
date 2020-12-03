@@ -189,6 +189,36 @@ TEST(FactoryPow, Pow_Zero) {
 
 }
 
+TEST(Factory, Null_1) {
+    char *test_val[2] = {" ", "8"};
+    Factory* factory = new Factory();
+
+    Base* conversion = factory->parse( test_val,2);
+    EXPECT_TRUE(conversion == nullptr);
+    EXPECT_EQ(conversion, nullptr);
+
+}
+
+TEST(Factory, Null_2) {
+    char *test_val[2] = {" "," "};
+    Factory* factory = new Factory();
+
+    Base* conversion = factory->parse( test_val,2);
+    EXPECT_TRUE(conversion == nullptr);
+    EXPECT_EQ(conversion, nullptr);
+
+}
+
+TEST(Factory, Null_3) {
+    char *test_val[3] = {" ", "4", "0"};
+    Factory* factory = new Factory();
+
+    Base* conversion = factory->parse( test_val,3);
+    EXPECT_TRUE(conversion == nullptr);
+    EXPECT_EQ(conversion, nullptr);
+
+}
+
 TEST(FactoryTest_Complex, Test_1) {
     char *test_val[12] = {" ", "3", "+", "5", "/", "2", "*", "5", "-", "10", "**", "2"};
     Factory* factory = new Factory();
